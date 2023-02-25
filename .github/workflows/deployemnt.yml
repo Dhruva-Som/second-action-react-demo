@@ -1,0 +1,32 @@
+name: Deploy Project
+on: push
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v3
+      - name: Setup Nodes
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install Dependency
+        run: npm ci
+      - name: Run Tests
+        run: npm test 
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v3
+      - name: Setup Nodes
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install Dependency
+        run: npm ci
+      - name: Build Application
+        run: npm run build
+      - name: Deploy
+        echo: "Deploying"
+    
